@@ -25,6 +25,9 @@ namespace SimpleViewer
 
         IEnumerator RoutineNest(BlendShapePreset preset, float velocity, float wait)
         {
+            if (BlendShapes == null)
+                yield break;
+
             for (var value = 0.0f; value <= 1.0f; value += velocity)
             {
                 BlendShapes.SetValue(preset, value);
