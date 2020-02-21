@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace SimpleViewer
+namespace UniVRMUtility.SimpleViewer
 {
     /// <summary>
     /// LookAtの注視点サンプル
