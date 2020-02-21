@@ -3,7 +3,7 @@ using UnityEngine;
 using UniVRM10;
 using VrmLib;
 
-namespace SimpleViewer
+namespace UniVRMUtility.SimpleViewer
 {
     /// <summary>
     /// LipSyncの あ、い、う、え、お を繰り返す

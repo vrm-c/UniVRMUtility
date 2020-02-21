@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace VRM.Samples
+namespace UniVRMUtility
 {
     public class RokuroCamera : MonoBehaviour
     {
@@ -17,13 +17,14 @@ namespace VRM.Samples
         [Range(0.1f, 5.0f)]
         public float DollySpeed = 1.0f;
 
-        struct PosRot
+        public struct PosRot
         {
             public Vector3 Position;
             public Quaternion Rotation;
         }
 
-        class _Rokuro
+        [Serializable]
+        public class _Rokuro
         {
             public float Yaw;
             public float Pitch;
@@ -66,7 +67,8 @@ namespace VRM.Samples
                 };
             }
         }
-        private _Rokuro _currentCamera = new _Rokuro();
+
+        public _Rokuro _currentCamera = new _Rokuro();
 
         private List<Coroutine> _activeCoroutines = new List<Coroutine>();
         private void OnEnable()

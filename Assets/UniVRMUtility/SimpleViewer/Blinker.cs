@@ -3,7 +3,7 @@ using UnityEngine;
 using UniVRM10;
 using VrmLib;
 
-namespace SimpleViewer
+namespace UniVRMUtility.SimpleViewer
 {
     /// <summary>
     /// 自動瞬きサンプル

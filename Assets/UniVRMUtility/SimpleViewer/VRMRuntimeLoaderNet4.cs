@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 #endif
 
 
-namespace SimpleViewer
+namespace UniVRMUtility.SimpleViewer
 {
     public class VRMRuntimeLoaderNet4 : MonoBehaviour
     {

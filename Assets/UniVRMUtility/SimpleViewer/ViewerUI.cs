@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UniVRM10;
 
-namespace SimpleViewer
+namespace UniVRMUtility.SimpleViewer
 {
     public class ViewerUI : MonoBehaviour
     {

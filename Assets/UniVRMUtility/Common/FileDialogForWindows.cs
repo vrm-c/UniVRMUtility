@@ -6,8 +6,23 @@ using System.Runtime.InteropServices;
 #endif
 
 
-namespace UniVRMUtility.SimpleViewer
+namespace UniVRMUtility
 {
+
+    public class KeepFolder : IDisposable
+    {
+        string m_dir;
+
+        public KeepFolder()
+        {
+            m_dir = Directory.GetCurrentDirectory();
+        }
+        public void Dispose()
+        {
+            Directory.SetCurrentDirectory(m_dir);
+        }
+    }
+
     public static class FileDialogForWindows
     {
 #if UNITY_STANDALONE_WIN
@@ -63,7 +78,7 @@ namespace UniVRMUtility.SimpleViewer
 
             var filters = new List<string>();
             filters.Add("All Files"); filters.Add("*.*");
-            foreach(var ext in extensions)
+            foreach (var ext in extensions)
             {
                 filters.Add(ext); filters.Add("*" + ext);
             }
@@ -105,9 +120,13 @@ namespace UniVRMUtility.SimpleViewer
             ofn.title = title;
             //ofn.defExt = "PNG";
             ofn.flags = 0x00000002 | 0x00000004; // OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY;
-            if (!GetSaveFileName(ofn))
+
+            using (var keep = new KeepFolder())
             {
-                return null;
+                if (!GetSaveFileName(ofn))
+                {
+                    return null;
+                }
             }
 
             return ofn.file;

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-namespace SimpleViewer
+namespace UniVRMUtility.SimpleViewer
 {
     public class CanvasManager : MonoBehaviour
     {
