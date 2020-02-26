@@ -8,7 +8,6 @@ using System.Runtime.InteropServices;
 
 namespace UniVRMUtility
 {
-
     public class KeepFolder : IDisposable
     {
         string m_dir;
@@ -121,12 +120,9 @@ namespace UniVRMUtility
             //ofn.defExt = "PNG";
             ofn.flags = 0x00000002 | 0x00000004; // OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY;
 
-            using (var keep = new KeepFolder())
+            if (!GetSaveFileName(ofn))
             {
-                if (!GetSaveFileName(ofn))
-                {
-                    return null;
-                }
+                return null;
             }
 
             return ofn.file;
