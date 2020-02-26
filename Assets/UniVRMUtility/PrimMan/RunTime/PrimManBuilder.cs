@@ -186,6 +186,7 @@ namespace UniVRMUtility.PrimMan
             public Bone(VrmLib.HumanoidBones bone, PrimitiveType primitive,
             Vector3 forward, Vector3 bendDir, float width, float depth, Vector3? offset = null)
             {
+                var up = -bendDir;
                 HumanBone = bone;
                 m_width = width;
                 m_depth = depth;
@@ -196,10 +197,10 @@ namespace UniVRMUtility.PrimMan
                 meshFilter.sharedMesh = CopyMesh(meshFilter.sharedMesh);
                 Shape.SetParent(Transform);
 
-                var axis = Vector3.Cross(bendDir, forward);
+                var axis = Vector3.Cross(up, forward);
                 var m = new Matrix4x4(
                     axis,
-                    bendDir,
+                    up,
                     forward,
                     new Vector4(0, 0, 0, 1)
                 );
