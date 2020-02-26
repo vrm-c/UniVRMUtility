@@ -104,9 +104,12 @@ namespace UniVRMUtility.SimpleViewer
                 m_textDistributionLicense.text = meta.RedistributionLicense.ModificationLicense.ToString();
                 m_textDistributionOther.text = meta.RedistributionLicense.OtherLicenseUrl;
 
-                var thumbnail = new Texture2D(2, 2);
-                thumbnail.LoadImage(meta.Thumbnail.Bytes.ToArray());
-                m_thumbnail.texture = thumbnail;
+                if (meta.Thumbnail != null)
+                {
+                    var thumbnail = new Texture2D(2, 2);
+                    thumbnail.LoadImage(meta.Thumbnail.Bytes.ToArray());
+                    m_thumbnail.texture = thumbnail;
+                }
             }
         }
         [SerializeField]
