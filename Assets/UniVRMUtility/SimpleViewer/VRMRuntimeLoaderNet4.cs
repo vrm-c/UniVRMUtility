@@ -95,7 +95,7 @@ namespace UniVRMUtility.SimpleViewer
         async void LoadVRMClicked()
         {
 #if UNITY_STANDALONE_WIN
-            var path = FileDialogForWindows.FileDialog("open VRM", ".vrm");
+            var path = ComDialog.Open(title: "open VRM", "*.vrm");
 #else
             var path = Application.dataPath + "/default.vrm";
 #endif
@@ -129,7 +129,7 @@ namespace UniVRMUtility.SimpleViewer
         void LoadBVHClicked()
         {
 #if UNITY_STANDALONE_WIN
-            var path = FileDialogForWindows.FileDialog("open BVH", ".bvh");
+            var path = ComDialog.Open("open BVH", "*.bvh");
             if (!string.IsNullOrEmpty(path))
             {
                 LoadBvh(path);

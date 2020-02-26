@@ -89,14 +89,12 @@ namespace UniVRMUtility.PrimMan
 
         void Export()
         {
-            // var path = FileDialogForWindows.SaveDialog("write file", "export.vrm");
-            // if (string.IsNullOrEmpty(path))
-            // {
-            //     Debug.Log($"cancel save");
-            //     return;
-            // }
-
-            var path = Path.Combine(Application.dataPath, "../tmp.vrm");
+            var path = ComDialog.Save("write file", "export.vrm");
+            if (string.IsNullOrEmpty(path))
+            {
+                Debug.Log($"cancel save");
+                return;
+            }
 
             Debug.Log($"save to {path}");
             var exporter = new UniVRM10.RuntimeVrmConverter();

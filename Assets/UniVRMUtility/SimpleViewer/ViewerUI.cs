@@ -267,7 +267,7 @@ namespace UniVRMUtility.SimpleViewer
         void OnOpenClicked()
         {
 #if UNITY_STANDALONE_WIN
-            var path = FileDialogForWindows.FileDialog("open VRM", "vrm", "glb", "bvh");
+            var path = ComDialog.Open("open VRM", "*.vrm", "*.glb", "*.bvh");
 #else
             var path = Application.dataPath + "/default.vrm";
 #endif

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Runtime.InteropServices;
 
 namespace UniVRMUtility
@@ -21,7 +22,7 @@ namespace UniVRMUtility
         {
             void BindToHandler(); // not fully defined
             void GetParent(); // not fully defined
-            void GetDisplayName([In] SIGDN sigdnName, [MarshalAs(UnmanagedType.LPWStr)] out string ppszName);
+            void GetDisplayName([In] SIGDN sigdnName, out IntPtr ppszName);
             void GetAttributes();  // not fully defined
             void Compare();  // not fully defined
         }
@@ -33,14 +34,23 @@ namespace UniVRMUtility
             _PICKFOLDERS = 0x20,
         }
 
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+        struct COMDLG_FILTERSPEC
+        {
+            public string pszName;
+            public string pszSpec;
+        }
+
         [ComImport]
         [Guid("42f85136-db7e-439c-85f1-e4075d135fc8")]
         [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
         interface IFileDialog
         {
-            [PreserveSig]
-            UInt32 Show([In] IntPtr hwndParent);
-            void SetFileTypes();     // not fully defined
+            [PreserveSig] // for cancel
+            uint Show([In] IntPtr hwndParent);
+
+            void SetFileTypes(uint cFileTypes, [In]COMDLG_FILTERSPEC[] rgFilterSpec);
+
             void SetFileTypeIndex();     // not fully defined
             void GetFileTypeIndex();     // not fully defined
             void Advise(); // not fully defined
@@ -51,7 +61,7 @@ namespace UniVRMUtility
             void SetFolder(IShellItem psi);
             void GetFolder(); // not fully defined
             void GetCurrentSelection(); // not fully defined
-            void SetFileName();  // not fully defined
+            void SetFileName([In, MarshalAs(UnmanagedType.LPWStr)] string pszName);
             void GetFileName();  // not fully defined
             void SetTitle([In, MarshalAs(UnmanagedType.LPWStr)] string pszTitle);
             void SetOkButtonLabel(); // not fully defined
@@ -98,34 +108,70 @@ namespace UniVRMUtility
         {
         }
 
-        public static string Open()
+        static string ToStringAndFree(IntPtr p)
         {
-            var dlg = new CLSID_FileOpenDialog() as IFileOpenDialog;
-            var hr = dlg.Show(hwndParent: IntPtr.Zero);
-            if (hr != 0)
-            {
-                return null;
-            }
-            IShellItem pItem;
-            dlg.GetResult(out pItem);
-            string pszFilePath;
-            pItem.GetDisplayName(SIGDN._FILESYSPATH, out pszFilePath);
-            return pszFilePath;
+            var str = Marshal.PtrToStringUni(p);
+            Marshal.FreeCoTaskMem(p);
+            return str;
         }
 
-        public static string Save()
+        public static string Open(string title, params string[] extensions)
         {
-            var dlg = new CLSID_FileSaveDialog() as IFileSaveDialog;
+            var dlg = new CLSID_FileOpenDialog() as IFileOpenDialog;
+
+            if (!string.IsNullOrEmpty(title))
+            {
+                dlg.SetTitle(title);
+            }
+
+            if (extensions.Any())
+            {
+                var args = extensions.Select(x => new COMDLG_FILTERSPEC
+                {
+                    pszName = x,
+                    pszSpec = x,
+                }).ToArray();
+                dlg.SetFileTypes((uint)args.Length, args);
+            }
+
             var hr = dlg.Show(hwndParent: IntPtr.Zero);
             if (hr != 0)
             {
+                // error or cancel
                 return null;
             }
             IShellItem pItem;
             dlg.GetResult(out pItem);
-            string pszFilePath;
+            IntPtr pszFilePath;
             pItem.GetDisplayName(SIGDN._FILESYSPATH, out pszFilePath);
-            return pszFilePath;
+            return ToStringAndFree(pszFilePath);
+        }
+
+        public static string Save(string title, string savefile)
+        {
+            var dlg = new CLSID_FileSaveDialog() as IFileSaveDialog;
+
+            if (!string.IsNullOrEmpty(title))
+            {
+                dlg.SetTitle(title);
+            }
+
+            if(!string.IsNullOrEmpty(savefile))
+            {
+                dlg.SetFileName(savefile);
+            }
+
+            var hr = dlg.Show(hwndParent: IntPtr.Zero);
+            if (hr != 0)
+            {
+                // error or cancel
+                return null;
+            }
+            IShellItem pItem;
+            dlg.GetResult(out pItem);
+            IntPtr pszFilePath;
+            pItem.GetDisplayName(SIGDN._FILESYSPATH, out pszFilePath);
+            return ToStringAndFree(pszFilePath);
         }
     }
 }
