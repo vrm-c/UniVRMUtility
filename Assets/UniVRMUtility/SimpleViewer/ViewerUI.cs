@@ -315,9 +315,8 @@ namespace UniVRMUtility.SimpleViewer
             m_texts.UpdateMeta(model);
 
             // UniVRM-0.XXのコンポーネントを構築する
-            var importer = new UniVRM10.RuntimeUnityBuilder();
-            var assets = importer.ToUnityAsset(model);
-            UniVRM10.ComponentBuilder.Build10(model, importer, assets);
+            var assets = RuntimeUnityBuilder.ToUnityAsset(model);
+            UniVRM10.ComponentBuilder.Build10(model, assets);
             SetModel(assets.Root);
         }
 
