@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -217,7 +218,7 @@ namespace UniVRMUtility.SimpleViewer
             string[] cmds = System.Environment.GetCommandLineArgs();
             if (cmds.Length > 1)
             {
-                await LoadModelAsync(cmds[1]);
+                StartCoroutine(LoadModelAsync(cmds[1]));
             }
 
             m_texts.Start();
@@ -285,7 +286,7 @@ namespace UniVRMUtility.SimpleViewer
                 case ".gltf":
                 case ".glb":
                 case ".vrm":
-                    LoadModelAsync(path);
+                    StartCoroutine(LoadModelAsync(path));
                     break;
 
                 case ".bvh":
@@ -294,35 +295,47 @@ namespace UniVRMUtility.SimpleViewer
             }
         }
 
-        async Task LoadModelAsync(string path)
+        IEnumerator LoadModelAsync(string path)
         {
             Debug.LogFormat("{0}", path);
-            var model = await Task.Run(() =>
-            {
-                if (!File.Exists(path))
-                {
-                    return null;
-                }
+            var task = Task.Run(() =>
+                   {
+                       if (!File.Exists(path))
+                       {
+                           return null;
+                       }
 
-                var vrmModel = VrmLoader.CreateVrmModel(path);
-                return vrmModel;
-            });
+                       var vrmModel = VrmLoader.CreateVrmModel(path);
+                       return vrmModel;
+                   });
+            while (!task.IsCompleted)
+            {
+                // 終了待ち
+                yield return null;
+            }
+            var model = task.Result;
             if (model == null)
             {
-                return;
+                yield break;
             }
 
             m_texts.UpdateMeta(model);
 
             // UniVRM-0.XXのコンポーネントを構築する
-            var importer = new UniVRM10.RuntimeUnityBuilder();
-            var assets = importer.ToUnityAsset(model);
-            UniVRM10.ComponentBuilder.Build10(model, importer, assets);
-            SetModel(assets.Root);
+            var assets = new ModelAsset();
+
+            // build async
+            yield return AsyncUnityBuilder.ToUnityAssetAsync(model, assets);
+
+            UniVRM10.ComponentBuilder.Build10(model, assets);
+
+            SetModel(assets);
         }
 
-        void SetModel(GameObject go)
+        void SetModel(ModelAsset asset)
         {
+            var go = asset.Root;
+
             // cleanup
             var loaded = m_loaded;
             m_loaded = null;
@@ -353,6 +366,12 @@ namespace UniVRMUtility.SimpleViewer
                 if (animation && animation.clip != null)
                 {
                     animation.Play(animation.clip.name);
+                }
+
+                // show mesh
+                foreach (var r in asset.Renderers)
+                {
+                    r.enabled = true;
                 }
             }
         }
