@@ -7,12 +7,12 @@
     "com.unity.textmeshpro": "2.0.1",
     "com.unity.timeline": "1.2.10",
     "com.unity.ugui": "1.0.0",
-    "com.vrmc.protobufserializer": "file:../UniVRM_1_0/Assets/ProtobufSerializer",
-    "com.vrmc.univrm": "file:../UniVRM_1_0/Assets/UniVRM-1.0",
-    "com.vrmc.univrm0xreader": "file:../UniVRM_1_0/Assets/UniVRM0XReader",
-    "com.vrmc.vrmlib": "file:../UniVRM_1_0/Assets/vrmlib",
-    "com.vrmc.vrmshaders": "file:../UniVRM_1_0/Assets/VRM",
-    "dotnet.system.memory": "file:../UniVRM_1_0/Assets/dotnet.system.memory",
+    "com.vrmc.protobufserializer": "https://github.com/vrm-c/UniVRM_1_0.git?path=/Assets/ProtobufSerializer",
+    "com.vrmc.univrm": "https://github.com/vrm-c/UniVRM_1_0.git?path=/Assets/UniVRM-1.0",
+    "com.vrmc.univrm0xreader": "https://github.com/vrm-c/UniVRM_1_0.git?path=/Assets/UniVRM0XReader",
+    "com.vrmc.vrmlib": "https://github.com/vrm-c/UniVRM_1_0.git?path=/Assets/vrmlib",
+    "com.vrmc.vrmshaders": "https://github.com/vrm-c/UniVRM_1_0.git?path=/Assets/VRM",
+    "dotnet.system.memory": "https://github.com/vrm-c/UniVRM_1_0.git?path=/Assets/dotnet.system.memory",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
@@ -44,5 +44,31 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
+  },
+  "lock": {
+    "com.vrmc.protobufserializer": {
+      "revision": "HEAD",
+      "hash": "4b75733d2848cb88c44f61465f8ed829f02d43e1"
+    },
+    "com.vrmc.univrm": {
+      "revision": "HEAD",
+      "hash": "4b75733d2848cb88c44f61465f8ed829f02d43e1"
+    },
+    "com.vrmc.univrm0xreader": {
+      "revision": "HEAD",
+      "hash": "4b75733d2848cb88c44f61465f8ed829f02d43e1"
+    },
+    "com.vrmc.vrmlib": {
+      "revision": "HEAD",
+      "hash": "4b75733d2848cb88c44f61465f8ed829f02d43e1"
+    },
+    "com.vrmc.vrmshaders": {
+      "revision": "HEAD",
+      "hash": "4b75733d2848cb88c44f61465f8ed829f02d43e1"
+    },
+    "dotnet.system.memory": {
+      "revision": "HEAD",
+      "hash": "4b75733d2848cb88c44f61465f8ed829f02d43e1"
+    }
   }
 }
