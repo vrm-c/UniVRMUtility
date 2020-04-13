@@ -75,10 +75,10 @@ namespace UniVRMUtility.SimpleViewer
                         break;
                     }
 
-                    BlendShapes.SetValue(BlendShapePreset.Blink, value);
+                    BlendShapes.SetPresetValue(BlendShapePreset.Blink, value);
                     yield return null;
                 }
-                BlendShapes.SetValue(BlendShapePreset.Blink, 1.0f);
+                BlendShapes.SetPresetValue(BlendShapePreset.Blink, 1.0f);
 
                 // wait...
                 yield return new WaitForSeconds(m_closingTime);
@@ -94,10 +94,10 @@ namespace UniVRMUtility.SimpleViewer
                         break;
                     }
 
-                    BlendShapes.SetValue(BlendShapePreset.Blink, value);
+                    BlendShapes.SetPresetValue(BlendShapePreset.Blink, value);
                     yield return null;
                 }
-                BlendShapes.SetValue(BlendShapePreset.Blink, 0);
+                BlendShapes.SetPresetValue(BlendShapePreset.Blink, 0);
             }
         }
 

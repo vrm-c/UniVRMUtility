@@ -30,17 +30,17 @@ namespace UniVRMUtility.SimpleViewer
 
             for (var value = 0.0f; value <= 1.0f; value += velocity)
             {
-                BlendShapes.SetValue(preset, value);
+                BlendShapes.SetPresetValue(preset, value);
                 yield return null;
             }
-            BlendShapes.SetValue(preset, 1.0f);
+            BlendShapes.SetPresetValue(preset, 1.0f);
             yield return new WaitForSeconds(wait);
             for (var value = 1.0f; value >= 0; value -= velocity)
             {
-                BlendShapes.SetValue(preset, value);
+                BlendShapes.SetPresetValue(preset, value);
                 yield return null;
             }
-            BlendShapes.SetValue(preset, 0);
+            BlendShapes.SetPresetValue(preset, 0);
             yield return new WaitForSeconds(wait * 2);
         }
 
