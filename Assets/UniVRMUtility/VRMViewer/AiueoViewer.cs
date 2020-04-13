@@ -3,17 +3,13 @@ using UnityEngine;
 using UniVRM10;
 using VrmLib;
 
-namespace UniVRMUtility.SimpleViewer
+namespace UniVRMUtility.VRMViewer
 {
-    /// <summary>
-    /// LipSyncの あ、い、う、え、お を繰り返す
-    /// </smumary>
-    public class AIUEO : MonoBehaviour
+    public class AiueoViewer : MonoBehaviour
     {
         [SerializeField]
         public VRMBlendShapeProxy BlendShapes;
-
-        void Reset()
+        private void Reset()
         {
             BlendShapes = GetComponent<VRMBlendShapeProxy>();
         }
@@ -23,11 +19,16 @@ namespace UniVRMUtility.SimpleViewer
         [SerializeField]
         float m_wait = 0.5f;
 
-        IEnumerator RoutineNest(BlendShapePreset preset, float velocity, float wait)
+        private void Awake()
         {
             if (BlendShapes == null)
-                yield break;
+            {
+                BlendShapes = GetComponent<VRMBlendShapeProxy>();
+            }
+        }
 
+        IEnumerator RoutineNest(BlendShapePreset preset, float velocity, float wait)
+        {
             for (var value = 0.0f; value <= 1.0f; value += velocity)
             {
                 BlendShapes.SetPresetValue(preset, value);

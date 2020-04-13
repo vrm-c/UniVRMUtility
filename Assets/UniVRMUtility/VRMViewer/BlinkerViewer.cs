@@ -3,12 +3,9 @@ using UnityEngine;
 using UniVRM10;
 using VrmLib;
 
-namespace UniVRMUtility.SimpleViewer
+namespace UniVRMUtility.VRMViewer
 {
-    /// <summary>
-    /// 自動瞬きサンプル
-    /// </summary>
-    public class Blinker : MonoBehaviour
+    public class BlinkerViewer : MonoBehaviour
     {
         [SerializeField]
         public VRMBlendShapeProxy BlendShapes;
@@ -30,8 +27,6 @@ namespace UniVRMUtility.SimpleViewer
         float m_closeSeconds = 0.1f;
 
         protected Coroutine m_coroutine;
-
-        //static readonly string BLINK_NAME = BlendShapePreset.Blink.ToString();
 
         float m_nextRequest;
         bool m_request;
@@ -108,7 +103,10 @@ namespace UniVRMUtility.SimpleViewer
 
         private void OnEnable()
         {
-            m_coroutine = StartCoroutine(BlinkRoutine());
+            if (m_coroutine == null)
+            {
+                m_coroutine = StartCoroutine(BlinkRoutine());
+            }
         }
 
         private void OnDisable()
