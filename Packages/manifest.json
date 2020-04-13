@@ -48,27 +48,27 @@
   "lock": {
     "com.vrmc.protobufserializer": {
       "revision": "HEAD",
-      "hash": "4b75733d2848cb88c44f61465f8ed829f02d43e1"
+      "hash": "3e073ed4781e151b6d1a3bd34343f41aa66b8acf"
     },
     "com.vrmc.univrm": {
       "revision": "HEAD",
-      "hash": "4b75733d2848cb88c44f61465f8ed829f02d43e1"
+      "hash": "3e073ed4781e151b6d1a3bd34343f41aa66b8acf"
     },
     "com.vrmc.univrm0xreader": {
       "revision": "HEAD",
-      "hash": "4b75733d2848cb88c44f61465f8ed829f02d43e1"
+      "hash": "3e073ed4781e151b6d1a3bd34343f41aa66b8acf"
     },
     "com.vrmc.vrmlib": {
       "revision": "HEAD",
-      "hash": "4b75733d2848cb88c44f61465f8ed829f02d43e1"
+      "hash": "3e073ed4781e151b6d1a3bd34343f41aa66b8acf"
     },
     "com.vrmc.vrmshaders": {
       "revision": "HEAD",
-      "hash": "4b75733d2848cb88c44f61465f8ed829f02d43e1"
+      "hash": "3e073ed4781e151b6d1a3bd34343f41aa66b8acf"
     },
     "dotnet.system.memory": {
       "revision": "HEAD",
-      "hash": "4b75733d2848cb88c44f61465f8ed829f02d43e1"
+      "hash": "3e073ed4781e151b6d1a3bd34343f41aa66b8acf"
     }
   }
 }
