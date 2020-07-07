@@ -63,10 +63,10 @@ namespace UniVRMUtility.VRMViewer
             {
                 if (_vrmModel != null)
                 {
-                    var proxy = _vrmModel.GetComponent<VRMBlendShapeProxy>();
-                    var blendShapeKeyWeights = _vrmModel.GetComponent<VRMBlendShapeProxy>().BlendShapeKeyWeights;
+                    var proxy = _vrmModel.GetComponent<VRMController>();
+                    var blendShapeKeyWeights = _vrmModel.GetComponent<VRMController>().BlendShapeKeyWeights;
                     if (_lookAtBlendShape == true)
-                        proxy.LookAtType = VRMBlendShapeProxy.LookAtTypes.BlendShape;
+                        proxy.LookAtType = VRMController.LookAtTypes.BlendShape;
                     for (int i = 0; i < _validExpNum; i++)
                     {
                         if (_objs[i].GetComponent<UISlider>().IsBeingDragged() == true)
@@ -79,7 +79,7 @@ namespace UniVRMUtility.VRMViewer
                                 blendShapeKey.Preset == BlendShapePreset.LookLeft ||
                                 blendShapeKey.Preset == BlendShapePreset.LookRight)
                             {
-                                proxy.LookAtType = VRMBlendShapeProxy.LookAtTypes.Bone;
+                                proxy.LookAtType = VRMController.LookAtTypes.Bone;
                                 proxy.SetValue(blendShapeKey, _barValue);
                             }
                             else
@@ -109,15 +109,16 @@ namespace UniVRMUtility.VRMViewer
             _facialExpressionPanelViewportContent.GetComponent<RectTransform>().localPosition = Vector2.zero;
             //******************************
 
-            // Get BlendShapeProxy
-            var proxy = vrmModel.GetComponent<VRMBlendShapeProxy>();
+            // Get VRMController
+            var controller = vrmModel.GetComponent<VRMController>();
 
             // Check the number of valid expressions
-            foreach (var clip in proxy.BlendShapeAvatar.Clips)
+            foreach (var clip in controller.BlendShapeAvatar.Clips)
             {
-                var expressionNums = clip.Values.ToArray().Length;
-                var expressionMaterialNums = clip.MaterialValues.ToArray().Length;
-                if ((expressionNums > 0) || (expressionMaterialNums > 0))
+                var expressionNums = clip.BlendShapeBindings.Length;
+                var expressionMaterialColorNums = clip.MaterialColorBindings.Length;
+                var expressionMaterialUVNums = clip.MaterialUVBindings.Length;
+                if ((expressionNums > 0) || (expressionMaterialColorNums > 0) || (expressionMaterialUVNums > 0))
                 {
                     _validExpNum += 1;
                 }
@@ -129,11 +130,12 @@ namespace UniVRMUtility.VRMViewer
             _validExpNum = 0;
 
             // Save the valid experssions
-            foreach (var (clip, index) in proxy.BlendShapeAvatar.Clips.Select((v, i) => (v, i)))
+            foreach (var (clip, index) in controller.BlendShapeAvatar.Clips.Select((v, i) => (v, i)))
             {
-                var expressionNums = clip.Values.ToArray().Length;
-                var expressionMaterialNums = clip.MaterialValues.ToArray().Length;
-                if ((expressionNums > 0) || (expressionMaterialNums > 0))
+                var expressionNums = clip.BlendShapeBindings.Length;
+                var expressionMaterialColorNums = clip.MaterialColorBindings.Length;
+                var expressionMaterialUVNums = clip.MaterialUVBindings.Length;
+                if ((expressionNums > 0) || (expressionMaterialColorNums > 0) || (expressionMaterialUVNums > 0))
                 {
                     var expressionName = clip.BlendShapeName;
                     var dynamicObject = Instantiate(_sliderCloneExample);

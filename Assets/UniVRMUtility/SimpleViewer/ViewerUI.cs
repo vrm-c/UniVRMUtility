@@ -348,7 +348,7 @@ namespace UniVRMUtility.SimpleViewer
 
             if (go != null)
             {
-                var lookAt = go.GetComponent<VRMBlendShapeProxy>();
+                var lookAt = go.GetComponent<VRMController>();
                 if (lookAt != null)
                 {
                     m_loaded = go.AddComponent<HumanPoseTransfer>();
@@ -359,7 +359,7 @@ namespace UniVRMUtility.SimpleViewer
                     m_blink = go.AddComponent<Blinker>();
 
                     lookAt.Gaze = m_target.transform;
-                    // lookAt.UpdateType = VRMBlendShapeProxy.UpdateTypes.LateUpdate; // after HumanPoseTransfer's setPose
+                    // lookAt.UpdateType = VRMController.UpdateTypes.LateUpdate; // after HumanPoseTransfer's setPose
                 }
 
                 var animation = go.GetComponent<Animation>();

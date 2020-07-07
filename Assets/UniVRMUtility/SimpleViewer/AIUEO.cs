@@ -11,11 +11,11 @@ namespace UniVRMUtility.SimpleViewer
     public class AIUEO : MonoBehaviour
     {
         [SerializeField]
-        public VRMBlendShapeProxy BlendShapes;
+        public VRMController BlendShapes;
 
         void Reset()
         {
-            BlendShapes = GetComponent<VRMBlendShapeProxy>();
+            BlendShapes = GetComponent<VRMController>();
         }
 
         Coroutine m_coroutine;

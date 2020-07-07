@@ -253,7 +253,7 @@ namespace UniVRMUtility.VRMViewer
                 }
 
                 // Set up LookAt
-                var lookAt = vrmModel.GetComponent<VRMBlendShapeProxy>();
+                var lookAt = vrmModel.GetComponent<VRMController>();
                 if (lookAt != null)
                 {
                     _loadedBvhSourceOnAvatar = vrmModel.AddComponent<HumanPoseTransfer>();
@@ -282,7 +282,7 @@ namespace UniVRMUtility.VRMViewer
                     if (leftEye == null && rightEye == null)
                     {
                         _lookAtBlendShapeFlag = true;
-                        lookAt.LookAtType = VRMBlendShapeProxy.LookAtTypes.BlendShape;
+                        lookAt.LookAtType = VRMController.LookAtTypes.BlendShape;
                     }
 
                     // Send information

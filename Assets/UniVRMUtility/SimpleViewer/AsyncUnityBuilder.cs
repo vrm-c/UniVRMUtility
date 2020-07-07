@@ -103,8 +103,7 @@ namespace UniVRMUtility.SimpleViewer
             // humanoid            
             var boneMap = map.Nodes
                 .Where(x => x.Key.HumanoidBone.GetValueOrDefault() != VrmLib.HumanoidBones.unknown)
-                    .Select(x => (x.Value.transform, x.Key.HumanoidBone.Value))
-                    .ToDictionary(x => x.transform, x => x.Item2);
+                    .Select(x => (x.Value.transform, x.Key.HumanoidBone.Value)).AsEnumerable();
             // next frame
             yield return null;
 
