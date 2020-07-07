@@ -8,10 +8,10 @@ namespace UniVRMUtility.VRMViewer
     public class BlinkerViewer : MonoBehaviour
     {
         [SerializeField]
-        public VRMBlendShapeProxy BlendShapes;
+        public VRMController BlendShapes;
         private void Reset()
         {
-            BlendShapes = GetComponent<VRMBlendShapeProxy>();
+            BlendShapes = GetComponent<VRMController>();
         }
 
         [SerializeField]
@@ -98,7 +98,7 @@ namespace UniVRMUtility.VRMViewer
 
         private void Awake()
         {
-            if (BlendShapes == null) BlendShapes = GetComponent<VRMBlendShapeProxy>();
+            if (BlendShapes == null) BlendShapes = GetComponent<VRMController>();
         }
 
         private void OnEnable()

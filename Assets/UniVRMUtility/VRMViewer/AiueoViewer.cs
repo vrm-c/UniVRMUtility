@@ -8,10 +8,10 @@ namespace UniVRMUtility.VRMViewer
     public class AiueoViewer : MonoBehaviour
     {
         [SerializeField]
-        public VRMBlendShapeProxy BlendShapes;
+        public VRMController BlendShapes;
         private void Reset()
         {
-            BlendShapes = GetComponent<VRMBlendShapeProxy>();
+            BlendShapes = GetComponent<VRMController>();
         }
 
         Coroutine m_coroutine;
@@ -23,7 +23,7 @@ namespace UniVRMUtility.VRMViewer
         {
             if (BlendShapes == null)
             {
-                BlendShapes = GetComponent<VRMBlendShapeProxy>();
+                BlendShapes = GetComponent<VRMController>();
             }
         }
 

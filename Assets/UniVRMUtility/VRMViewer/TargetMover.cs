@@ -72,7 +72,7 @@ namespace UniVRMUtility.VRMViewer
             {
                 if (_vrmModel != null)
                 {
-                    var tLookAt = _vrmModel.GetComponent<VRMBlendShapeProxy>().Head.position;
+                    var tLookAt = _vrmModel.GetComponent<VRMController>().Head.position;
                     transform.LookAt(new Vector3(tLookAt.x, tLookAt.y, tLookAt.z));
                 }
                 else
@@ -95,7 +95,7 @@ namespace UniVRMUtility.VRMViewer
                 if (_vrmModel != null)
                 {
                     // Make eyes static
-                    _vrmModel.GetComponent<VRMBlendShapeProxy>().Gaze = _referenceObject.transform;
+                    _vrmModel.GetComponent<VRMController>().Gaze = _referenceObject.transform;
                 }
                 _closeGameObject.DisableSphere();
             }
@@ -109,7 +109,7 @@ namespace UniVRMUtility.VRMViewer
             {
                 if (_vrmModel != null)
                 {
-                    _vrmModel.GetComponent<VRMBlendShapeProxy>().Gaze = _targetSphere.transform;
+                    _vrmModel.GetComponent<VRMController>().Gaze = _targetSphere.transform;
                 }
                 _closeGameObject.EnableSphere();
             }

@@ -27,8 +27,8 @@ namespace UniVRMUtility.VRMViewer
         {
             if (_vrmModel != null)
             {
-                var frontfacePos = _vrmModel.GetComponent<VRMBlendShapeProxy>().Head.position;
-                var faceSurfaceNormal = _vrmModel.GetComponent<VRMBlendShapeProxy>().Head.forward;
+                var frontfacePos = _vrmModel.GetComponent<VRMController>().Head.position;
+                var faceSurfaceNormal = _vrmModel.GetComponent<VRMController>().Head.forward;
                 var distanceFromFace = _faceCameraDistance.value + _distanceFromFace;
                 transform.localPosition = new Vector3(
                     frontfacePos.x + faceSurfaceNormal.x * distanceFromFace + Time.deltaTime * 0.001f,
@@ -42,7 +42,7 @@ namespace UniVRMUtility.VRMViewer
 
             if (_vrmModel != null)
             {
-                var tLookAt = _vrmModel.GetComponent<VRMBlendShapeProxy>().Head.position;
+                var tLookAt = _vrmModel.GetComponent<VRMController>().Head.position;
                 transform.LookAt(new Vector3(tLookAt.x, tLookAt.y, tLookAt.z));
             }
             else

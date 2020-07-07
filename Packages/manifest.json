@@ -7,12 +7,8 @@
     "com.unity.textmeshpro": "2.0.1",
     "com.unity.timeline": "1.2.10",
     "com.unity.ugui": "1.0.0",
-    "com.vrmc.protobufserializer": "https://github.com/vrm-c/UniVRM_1_0.git?path=/Assets/ProtobufSerializer",
-    "com.vrmc.univrm": "https://github.com/vrm-c/UniVRM_1_0.git?path=/Assets/UniVRM-1.0",
-    "com.vrmc.univrm0xreader": "https://github.com/vrm-c/UniVRM_1_0.git?path=/Assets/UniVRM0XReader",
-    "com.vrmc.vrmlib": "https://github.com/vrm-c/UniVRM_1_0.git?path=/Assets/vrmlib",
-    "com.vrmc.vrmshaders": "https://github.com/vrm-c/UniVRM_1_0.git?path=/Assets/VRM",
-    "dotnet.system.memory": "https://github.com/vrm-c/UniVRM_1_0.git?path=/Assets/dotnet.system.memory",
+    "com.vrmc.univrm": "https://github.com/vrm-c/UniVRM_1_0.git?path=/Assets/Vrm10",
+    "com.vrmc.vrmshaders": "https://github.com/vrm-c/UniVRM.git?path=/Assets/VRMShaders",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
@@ -46,29 +42,13 @@
     "com.unity.modules.xr": "1.0.0"
   },
   "lock": {
-    "com.vrmc.protobufserializer": {
-      "revision": "HEAD",
-      "hash": "3e073ed4781e151b6d1a3bd34343f41aa66b8acf"
-    },
     "com.vrmc.univrm": {
       "revision": "HEAD",
-      "hash": "3e073ed4781e151b6d1a3bd34343f41aa66b8acf"
-    },
-    "com.vrmc.univrm0xreader": {
-      "revision": "HEAD",
-      "hash": "3e073ed4781e151b6d1a3bd34343f41aa66b8acf"
-    },
-    "com.vrmc.vrmlib": {
-      "revision": "HEAD",
-      "hash": "3e073ed4781e151b6d1a3bd34343f41aa66b8acf"
+      "hash": "198c2c605ded711b21781421e71ba9bdbe0f8728"
     },
     "com.vrmc.vrmshaders": {
       "revision": "HEAD",
-      "hash": "3e073ed4781e151b6d1a3bd34343f41aa66b8acf"
-    },
-    "dotnet.system.memory": {
-      "revision": "HEAD",
-      "hash": "3e073ed4781e151b6d1a3bd34343f41aa66b8acf"
+      "hash": "155acf354735288db0335878179f483901541851"
     }
   }
 }

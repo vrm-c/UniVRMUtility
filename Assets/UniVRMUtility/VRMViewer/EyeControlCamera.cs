@@ -61,7 +61,7 @@ namespace UniVRMUtility.VRMViewer
             {
                 if (_vrmModel != null)
                 {
-                    _vrmModel.GetComponent<VRMBlendShapeProxy>().Gaze = _targetCamera.transform;
+                    _vrmModel.GetComponent<VRMController>().Gaze = _targetCamera.transform;
                 }
                 _closeGameObject.DisableSphere();
             }
