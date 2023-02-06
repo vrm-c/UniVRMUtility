@@ -1,3 +1,11 @@
+# DEPRECATED
+This repository was trial implementation of vrm-1.0.
+Go to https://github.com/vrm-c/UniVRM
+
+
+---
+
+
 # UniVRMUtility
 
 Utility for UniVRM 1.0
